@@ -1,0 +1,16 @@
+/NOLOGO
+/errorReport:prompt
+/MACHINE:x64
+/SUBSYSTEM:WINDOWS
+/DEF
+/NAME:"UE4Editor-Section_01.dll"
+/IGNORE:4221
+/NODEFAULTLIB
+"C:\Program Files\Epic Games\UE_4.18\Engine\Intermediate\Build\Win64\UE4Editor\Development\Engine\SharedPCH.Engine.h.obj"
+"E:\Projects\Personal\Unreal\Udemy\Projects\Section_01\Section_01\Intermediate\Build\Win64\UE4Editor\Development\Section_01\Section_01.cpp.obj"
+"E:\Projects\Personal\Unreal\Udemy\Projects\Section_01\Section_01\Intermediate\Build\Win64\UE4Editor\Development\Section_01\Section_01GameModeBase.cpp.obj"
+"E:\Projects\Personal\Unreal\Udemy\Projects\Section_01\Section_01\Intermediate\Build\Win64\UE4Editor\Development\Section_01\Section_01.init.gen.cpp.obj"
+"E:\Projects\Personal\Unreal\Udemy\Projects\Section_01\Section_01\Intermediate\Build\Win64\UE4Editor\Development\Section_01\Section_01GameModeBase.gen.cpp.obj"
+"C:\Program Files\Epic Games\UE_4.18\Engine\Intermediate\Build\Win64\UE4Editor\Development\Section_01\PCLaunch.rc.res"
+"C:\Program Files\Epic Games\UE_4.18\Engine\Intermediate\Build\Win64\UE4Editor\Development\ModuleVersionResource.rc.inl.res"
+/OUT:"E:\Projects\Personal\Unreal\Udemy\Projects\Section_01\Section_01\Intermediate\Build\Win64\UE4Editor\Development\UE4Editor-Section_01.lib"
