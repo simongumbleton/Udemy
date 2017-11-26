@@ -5,29 +5,30 @@
 using namespace std;
 
 void PrintIntro();
-string GetGuessAndPrint();
+void PlayGame();
+string GetGuess();
+void DisplayGuessToUser(string);
+bool AskToPlayAgain();
 
 //Entry point for the game
 int main() {
 
-
 	PrintIntro();
+	PlayGame();
+	AskToPlayAgain();
+	return 0;
+}
 
-
+void PlayGame()
+{
 	constexpr int NUMBER_OF_TURNS = 5;	// constant expression defines the number of turns
-	//Loop for the number of turns asking for guesses
+										//Loop for the number of turns asking for guesses
 	for (int i = 1; i <= NUMBER_OF_TURNS; i++)
 	{
-		GetGuessAndPrint();
+		string Guess = GetGuess();
+		DisplayGuessToUser(Guess);
 		cout << endl;
 	}
-
-
-	//Evaluate Guess
-	cout << "\nLets see how you did!..";
-
-	cout << endl;
-	return 0;
 }
 
 void PrintIntro()
@@ -39,15 +40,41 @@ void PrintIntro()
 	return;
 }
 
-string GetGuessAndPrint()
+string GetGuess()
 {
 	//Get a guess from the user
 	cout << "Make a guess...";
 	string Guess = "";
 	getline(cin, Guess);	//std::getline (std::cin,name);
-
-	//Repeat the gues back to the user
-	cout << "\nYou guessed.." << Guess << endl;
-
 	return Guess;
 }
+
+void DisplayGuessToUser(string guess)
+{
+	//Repeat the gues back to the user
+	cout << "You guessed.." << guess << endl;
+}
+
+bool AskToPlayAgain()
+{
+	cout << "Do you want to play again? ";
+	string Response = "";
+	getline(cin, Response);
+	if ((Response[0] == 'y') || (Response[0] == 'Y'))
+	{
+		cout << "Play Again!";
+		return true;
+	}
+	else if ((Response[0] == 'n') || (Response[0] == 'N'))
+	{
+		cout << "Do not play again";
+		return false;
+	}
+	else
+	{
+		cout << "Did not understand input";
+		return false;
+	}
+	
+}
+
