@@ -13,8 +13,8 @@ public:	//Interface for the game
 
 private:	//variables internal to the class
 
-	int MyCurrentTry;
-	int MyMaxTries;
+	int MyCurrentTry = 1;
+	int MyMaxTries = 5;
 
 };
 
