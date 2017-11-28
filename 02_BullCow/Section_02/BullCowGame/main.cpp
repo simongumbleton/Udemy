@@ -11,11 +11,16 @@ void DisplayGuessToUser(string);
 bool AskToPlayAgain();
 
 //Entry point for the game
-int main() {
-
-	PrintIntro();
-	PlayGame();
-	AskToPlayAgain();
+int main() 
+{
+	bool bPlayAgain = false;
+	do
+	{
+		PrintIntro();
+		PlayGame();
+		bPlayAgain = AskToPlayAgain();
+	}
+	while(bPlayAgain);
 	return 0;
 }
 
@@ -57,22 +62,22 @@ void DisplayGuessToUser(string guess)
 
 bool AskToPlayAgain()
 {
-	cout << "Do you want to play again? ";
+	cout << "Do you want to play again? y / n ";
 	string Response = "";
 	getline(cin, Response);
 	if ((Response[0] == 'y') || (Response[0] == 'Y'))
 	{
-		cout << "Play Again!";
+		cout << "Play Again!\n";
 		return true;
 	}
 	else if ((Response[0] == 'n') || (Response[0] == 'N'))
 	{
-		cout << "Do not play again";
+		cout << "Do not play again\n";
 		return false;
 	}
 	else
 	{
-		cout << "Did not understand input";
+		cout << "Did not understand input\n";
 		return false;
 	}
 	
