@@ -6,8 +6,8 @@ class FBullCowGame
 public:	//Interface for the game
 
 	void Reset();	//TO DO make a more rich return value
-	int GetMaxTries();
-	int GetCurrentTry();
+	int GetMaxTries() const;
+	int GetCurrentTry() const;
 	bool IsGameWon();
 	bool CheckGuessValidity(std::string);
 

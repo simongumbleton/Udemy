@@ -1,4 +1,2 @@
-﻿  main.cpp
-  FBullCowGame.cpp
-  Generating Code...
-  BullCowGame.vcxproj -> E:\Projects\Personal\Unreal\Udemy\02_BullCow\Section_02\Debug\BullCowGame.exe
+﻿  FBullCowGame.cpp
+e:\projects\personal\unreal\udemy\02_bullcow\section_02\bullcowgame\fbullcowgame.cpp(5): error C3490: 'MyMaxTries' cannot be modified because it is being accessed through a const object
