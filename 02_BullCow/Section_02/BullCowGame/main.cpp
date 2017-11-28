@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include <iostream>
 #include <string>
+#include "FBullCowGame.h"
 
 void PrintIntro();
 void PlayGame();
@@ -24,6 +25,8 @@ int main()
 
 void PlayGame()
 {
+	FBullCowGame BCGame;	//instance of a new game(class)
+
 	constexpr int NUMBER_OF_TURNS = 5;	// constant expression defines the number of turns
 										//Loop for the number of turns asking for guesses
 	for (int i = 1; i <= NUMBER_OF_TURNS; i++)
