@@ -27,7 +27,7 @@ int main()
 
 void PlayGame()
 {
-	
+	BCGame.Reset();
 	int MaxTries = BCGame.GetMaxTries();
 	//std::cout << MaxTries << std::endl;
 
