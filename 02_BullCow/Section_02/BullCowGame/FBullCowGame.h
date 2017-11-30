@@ -4,7 +4,7 @@
 using Fstring = std::string;
 using int32 = int;
 
-struct BullCowCount
+struct FBullCowCount
 {
 	int32 Bulls = 0;
 	int32 Cows = 0;
@@ -24,7 +24,7 @@ public:	//Interface for the game
 	//TO DO make a more rich return value
 	bool CheckGuessValidity(Fstring);
 
-	BullCowCount SubmitGuess(Fstring);
+	FBullCowCount SubmitGuess(Fstring Guess);
 
 
 private:	//variables internal to the class

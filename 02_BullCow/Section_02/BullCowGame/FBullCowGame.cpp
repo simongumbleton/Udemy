@@ -19,7 +19,7 @@ void FBullCowGame::Reset()
 	constexpr int32 MAX_TRIES = 8;
 	MyMaxTries = MAX_TRIES;
 
-	const Fstring HIDDEN_WORD = "plant";
+	const Fstring HIDDEN_WORD = "ant";
 	MyHiddenWord = HIDDEN_WORD;
 
 	MyCurrentTry = 1;
@@ -33,13 +33,37 @@ bool FBullCowGame::CheckGuessValidity(Fstring)
 
 //Recievs a valid guess. Increments turn and returns count
 //a method for counting bulls and cows and increasing try number - Assuming valid guess
-BullCowCount FBullCowGame::SubmitGuess(Fstring)
+FBullCowCount FBullCowGame::SubmitGuess(Fstring Guess)
 {
 	//increment turn number
 	MyCurrentTry++;
 	//setup return variabls
-	BullCowCount BullCowCount;
-	//loop through letters in guess
-		//compare letters against hidden word
+	FBullCowCount BullCowCount;
+	int32 GuessWordLength = Guess.length();
+	int32 HiddenWordLength = MyHiddenWord.length();
+	//loop through letters in hidden word
+	for (int32 MHWChar = 0; MHWChar < HiddenWordLength; MHWChar++)
+	{
+		//compare letters against guess
+		for (int32 GChar = 0; GChar < GuessWordLength; GChar++)
+		{
+			//if they match then
+			if (Guess[GChar] == MyHiddenWord[MHWChar])
+			{
+				// if they're in the same place
+				if (MHWChar == GChar) 
+				{
+					//increment bulls
+					BullCowCount.Bulls++;
+				}
+				// else
+				else
+				{
+					//increment cows
+					BullCowCount.Cows++;
+				}			
+			}
+		}
+	}
 	return BullCowCount;
 }
