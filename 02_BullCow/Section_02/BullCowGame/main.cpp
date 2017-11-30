@@ -64,9 +64,9 @@ void PlayGame()
 void PrintIntro()
 {
 	//Introduce the game
-	constexpr int32 WORD_LENGTH = 5;	// constant expression defines the length of the word to guess
+	int32 HiddenWordLength = BCGame.GetHiddenWordLength();	
 	std::cout << "Welcome to Bulls and Cows, a fun word game!\n";
-	std::cout << "Can you guess the " << WORD_LENGTH << " letter isogram I'm thinking of?\n";
+	std::cout << "Can you guess the " << HiddenWordLength << " letter isogram I'm thinking of?\n";
 	return;
 }
 

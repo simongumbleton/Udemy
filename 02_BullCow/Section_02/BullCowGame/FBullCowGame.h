@@ -26,6 +26,8 @@ public:	//Interface for the game
 
 	FBullCowCount SubmitGuess(Fstring Guess);
 
+	int32 GetHiddenWordLength() const;
+
 
 private:	//variables internal to the class
 

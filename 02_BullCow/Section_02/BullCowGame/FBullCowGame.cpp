@@ -17,9 +17,9 @@ bool FBullCowGame::IsGameWon() const { return false; }
 void FBullCowGame::Reset()
 {
 	constexpr int32 MAX_TRIES = 8;
-	MyMaxTries = MAX_TRIES;
+	const Fstring HIDDEN_WORD = "plant";
 
-	const Fstring HIDDEN_WORD = "ant";
+	MyMaxTries = MAX_TRIES;
 	MyHiddenWord = HIDDEN_WORD;
 
 	MyCurrentTry = 1;
@@ -66,4 +66,9 @@ FBullCowCount FBullCowGame::SubmitGuess(Fstring Guess)
 		}
 	}
 	return BullCowCount;
+}
+
+int32 FBullCowGame::GetHiddenWordLength() const
+{
+	return MyHiddenWord.length();
 }
