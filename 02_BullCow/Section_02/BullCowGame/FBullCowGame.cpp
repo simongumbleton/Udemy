@@ -11,11 +11,12 @@ FBullCowGame::FBullCowGame()
 
 int32 FBullCowGame::GetMaxTries() const {return MyMaxTries; }
 int32 FBullCowGame::GetCurrentTry() const { return MyCurrentTry; }
-bool FBullCowGame::IsGameWon() const { return false; }
+bool FBullCowGame::IsGameWon() const { return bGameIsWon; }
 
 
 void FBullCowGame::Reset()
 {
+	bGameIsWon = false;
 	constexpr int32 MAX_TRIES = 8;
 	const Fstring HIDDEN_WORD = "plant";
 
@@ -76,6 +77,14 @@ FBullCowCount FBullCowGame::SubmitValidGuess(Fstring Guess)
 				}			
 			}
 		}
+	}
+	if (BullCowCount.Bulls == HiddenWordLength)
+	{
+		bGameIsWon = true;
+	}
+	else
+	{
+		bGameIsWon = false;
 	}
 	return BullCowCount;
 }

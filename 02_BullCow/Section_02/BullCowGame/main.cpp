@@ -44,27 +44,28 @@ void PlayGame()
 	//std::cout << MaxTries << std::endl;
 
 	//Loop for the number of turns asking for guesses
-
-	//TODO change to while loop once guess validation is live
-	for (int32 i = 1; i <= MaxTries; i++)
+	//while game is NOT won
+	while (!BCGame.IsGameWon() && BCGame.GetCurrentTry() <= MaxTries)
 	{
-		Ftext Guess = GetValidGuess();	
+		Ftext Guess = GetValidGuess();
 
 		// submit valid guess to game
 		FBullCowCount BullCowCount = BCGame.SubmitValidGuess(Guess);
-		
+
 		std::cout << "Bulls = " << BullCowCount.Bulls;
 		std::cout << ". Cows = " << BullCowCount.Cows << std::endl;
 
 		DisplayGuessToUser(Guess);
 		std::cout << std::endl;
+
 	}
 }
 
 void PrintIntro()
 {
 	//Introduce the game
-	int32 HiddenWordLength = BCGame.GetHiddenWordLength();	
+	int32 HiddenWordLength = BCGame.GetHiddenWordLength();
+	std::cout << std::endl << std::endl;
 	std::cout << "Welcome to Bulls and Cows, a fun word game!\n";
 	std::cout << "Can you guess the " << HiddenWordLength << " letter isogram I'm thinking of?\n";
 	return;

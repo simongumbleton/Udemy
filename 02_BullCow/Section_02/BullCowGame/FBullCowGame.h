@@ -43,6 +43,7 @@ private:	//variables internal to the class
 	int32 MyCurrentTry;	//initialisation in constructor
 	int32 MyMaxTries;
 	Fstring MyHiddenWord;
+	bool bGameIsWon;
 
 };
 
