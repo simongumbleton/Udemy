@@ -26,9 +26,26 @@ void FBullCowGame::Reset()
 	return;
 }
 
-bool FBullCowGame::CheckGuessValidity(Fstring)
+EGuessStatus FBullCowGame::CheckGuessValidity(Fstring Guess)
 {
-	return false;
+	if (false)	//if guess not isogram
+	{
+		return EGuessStatus::Not_Isogram;
+	}
+	else if (false)	//if not lowercase
+	{
+		return EGuessStatus::Not_Lowercase;
+	}
+	else if (Guess.length() != GetHiddenWordLength()) //if length wrong
+	{
+		return EGuessStatus::Wrong_Length;
+	}
+	else //otherwise
+	{
+		return EGuessStatus::OK;
+	}
+
+	
 }
 
 //Recievs a valid guess. Increments turn and returns count
