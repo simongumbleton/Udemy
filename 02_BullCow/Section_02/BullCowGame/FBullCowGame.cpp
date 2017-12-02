@@ -7,12 +7,22 @@
 using Fstring = std::string;
 using int32 = int;
 
+TMap<int32, Fstring> HiddenWordDictionary
+{
+	{ 3,"ant" },
+	{ 4,"home" },
+	{ 5,"jumps" },
+	{ 6,"planet" },
+	{ 7,"objects" },
+};
+
 FBullCowGame::FBullCowGame()	//default constructor
 {
 	Reset();
 }
 
 int32 FBullCowGame::GetCurrentTry() const { return MyCurrentTry; }
+
 bool FBullCowGame::IsGameWon() const { return bGameIsWon; }
 
 int32 FBullCowGame::GetMaxTries() const
@@ -21,11 +31,26 @@ int32 FBullCowGame::GetMaxTries() const
 	return WordLengthToMaxTries[MyHiddenWord.length()]; 
 }
 
+int32 FBullCowGame::GetHiddenWordLength() const
+{
+	return MyHiddenWord.length();
+}
+
+bool FBullCowGame::SetLengthOfHiddenWord(int32 lengthForNewHiddenWord)
+{
+	if ((lengthForNewHiddenWord < 8) && (lengthForNewHiddenWord > 2))
+	{
+		LengthForNewHiddenWord = lengthForNewHiddenWord;	//if within supported range 3-7
+		return true;
+	}
+	return false;
+}
 
 void FBullCowGame::Reset()
 {
 	bGameIsWon = false;
-	const Fstring HIDDEN_WORD = "plan";
+
+	Fstring HIDDEN_WORD = SelectNewHiddenWordFromLength(LengthForNewHiddenWord); //Select hidden word 
 
 	MyHiddenWord = HIDDEN_WORD;
 
@@ -51,8 +76,6 @@ EGuessStatus FBullCowGame::CheckGuessValidity(Fstring Guess)
 	{
 		return EGuessStatus::OK;
 	}
-
-	
 }
 
 //Recievs a valid guess. Increments turn and returns count
@@ -95,10 +118,7 @@ FBullCowCount FBullCowGame::SubmitValidGuess(Fstring Guess)
 	return BullCowCount;
 }
 
-int32 FBullCowGame::GetHiddenWordLength() const
-{
-	return MyHiddenWord.length();
-}
+
 
 bool FBullCowGame::IsIsogram(Fstring Word) const
 {
@@ -138,4 +158,9 @@ bool FBullCowGame::IsLowerCase(Fstring Word) const
 		}
 	}
 	return (true);
+}
+
+Fstring FBullCowGame::SelectNewHiddenWordFromLength(int32 length)
+{
+	return HiddenWordDictionary[length];
 }

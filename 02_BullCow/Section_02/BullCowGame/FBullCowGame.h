@@ -20,6 +20,7 @@ enum class EGuessStatus
 };
 
 
+
 class FBullCowGame
 {
 public:	//Interface for the game
@@ -38,6 +39,8 @@ public:	//Interface for the game
 
 	int32 GetHiddenWordLength() const;
 
+	bool SetLengthOfHiddenWord(int32);
+
 
 private:	//variables internal to the class
 
@@ -47,6 +50,9 @@ private:	//variables internal to the class
 	bool bGameIsWon;
 	bool IsIsogram(Fstring) const;
 	bool IsLowerCase(Fstring) const;
+	int32 LengthForNewHiddenWord = 3;
+	Fstring SelectNewHiddenWordFromLength(int32);
+	
 
 };
 

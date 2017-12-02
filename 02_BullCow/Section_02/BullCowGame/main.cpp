@@ -46,6 +46,9 @@ void PlayGame()
 {
 	BCGame.Reset();
 	int32 MaxTries = BCGame.GetMaxTries();
+	int32 HiddenWordLength = BCGame.GetHiddenWordLength();
+
+	std::cout << "Can you guess the " << HiddenWordLength << " letter isogram I'm thinking of?\n";
 
 	//Loop for the number of turns asking for guesses
 	//while game is NOT won
@@ -69,10 +72,30 @@ void PlayGame()
 void PrintIntro()
 {
 	//Introduce the game
-	int32 HiddenWordLength = BCGame.GetHiddenWordLength();
+	
 	std::cout << std::endl << std::endl;
 	std::cout << "Welcome to Bulls and Cows, a fun word game!\n";
-	std::cout << "Can you guess the " << HiddenWordLength << " letter isogram I'm thinking of?\n";
+
+	std::cout << "Would you like a 3,4,5,6 or 7 letter hidden word?\n";
+	int32 lengthForNewWord;
+	std::cin >> lengthForNewWord;
+	// Because input stream is in a failed state, cin will be evaluated to false
+	while (!std::cin)
+	{
+		std::cin.clear();    // Restore input stream to working state
+		std::cin.ignore(100, '\n');    // Get rid of any garbage that user might have entered
+		std::cout << "I said enter an integer, Dumbass. Try again: \n";
+		std::cin >> lengthForNewWord;    // After cin is restored and any garbage in the stream has been cleared, store user input in number again
+	}
+
+	if (!BCGame.SetLengthOfHiddenWord(lengthForNewWord))
+	{
+		std::cout << "That length is not supported. Defaulting to hidden word length of " << BCGame.GetHiddenWordLength() << ".\n\n";
+	}
+
+	std::cin.clear();    // Restore input stream to working state
+	std::cin.ignore(100, '\n');    // Get rid of any garbage that user might have entered
+
 	return;
 }
 
@@ -122,12 +145,12 @@ void DisplayGuessToUser(Ftext guess)
 
 bool AskToPlayAgain()
 {
-	std::cout << "Do you want to play again with the same hidden word? y / n ";
+	std::cout << "Do you want to play again? y / n ";
 	Ftext Response = "";
 	getline(std::cin, Response);
 	if ((Response[0] == 'y') || (Response[0] == 'Y'))
 	{
-		std::cout << "Play Again!\n";
+		std::cout << "Playing again!!\n";
 		return true;
 	}
 	else if ((Response[0] == 'n') || (Response[0] == 'N'))
