@@ -16,7 +16,7 @@ using int32 = int;
 
 void PrintIntro();
 void PlayGame();
-Ftext GetGuess();
+Ftext GetValidGuess();
 void DisplayGuessToUser(Ftext);
 bool AskToPlayAgain();
 
@@ -48,16 +48,13 @@ void PlayGame()
 	//TODO change to while loop once guess validation is live
 	for (int32 i = 1; i <= MaxTries; i++)
 	{
-		Ftext Guess = GetGuess();	//TODO check for valid guesses
-
-		EGuessStatus Status = BCGame.CheckGuessValidity(Guess);
+		Ftext Guess = GetValidGuess();	
 
 		// submit valid guess to game
-		FBullCowCount BullCowCount = BCGame.SubmitGuess(Guess);
-		// Print number of bulls and cows
+		FBullCowCount BullCowCount = BCGame.SubmitValidGuess(Guess);
+		
 		std::cout << "Bulls = " << BullCowCount.Bulls;
 		std::cout << ". Cows = " << BullCowCount.Cows << std::endl;
-
 
 		DisplayGuessToUser(Guess);
 		std::cout << std::endl;
@@ -73,16 +70,41 @@ void PrintIntro()
 	return;
 }
 
-Ftext GetGuess()	//TODO change to get valid guess
+Ftext GetValidGuess()	//Loop until user gives valid guess
 {
-	int32 CurrentTry = BCGame.GetCurrentTry();
-	//std::cout << CurrentTry << std::endl;
-
 	//Get a guess from the user
-	std::cout << "Try "	<< CurrentTry << ". Make a guess...";
+
 	Ftext Guess = "";
-	getline(std::cin, Guess);	//std::getline (std::std::cin,name);
+	EGuessStatus Status = EGuessStatus::Invalid_Status;
+	do {
+		int32 CurrentTry = BCGame.GetCurrentTry();
+		std::cout << "Try " << CurrentTry << ". Make a guess...";
+		Guess = "";
+		getline(std::cin, Guess);
+
+		Status = BCGame.CheckGuessValidity(Guess);
+
+		switch (Status)
+		{
+		case EGuessStatus::OK:
+			break;
+		case EGuessStatus::Not_Isogram:
+			std::cout << "Your guess is not an isogram. Isograms are words with no repeating letters\n";
+			break;
+		case EGuessStatus::Wrong_Length:
+			std::cout << "Your guess is the wrong length.\nPlease enter a " << BCGame.GetHiddenWordLength() << " letter word.\n";
+			break;
+		case EGuessStatus::Not_Lowercase:
+			std::cout << "Your guess must be lowercase\n";
+			break;
+		default:	
+			break;
+		}
+		std::cout << std::endl;
+	} while (Status != EGuessStatus::OK); // keep looping till no errors
+
 	return Guess;
+	
 }
 
 void DisplayGuessToUser(Ftext guess)

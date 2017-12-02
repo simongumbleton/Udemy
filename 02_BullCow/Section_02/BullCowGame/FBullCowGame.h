@@ -12,6 +12,7 @@ struct FBullCowCount
 
 enum class EGuessStatus
 {
+	Invalid_Status,
 	OK,
 	Not_Isogram,
 	Wrong_Length,
@@ -32,7 +33,7 @@ public:	//Interface for the game
 
 	EGuessStatus CheckGuessValidity(Fstring Guess);
 
-	FBullCowCount SubmitGuess(Fstring Guess);
+	FBullCowCount SubmitValidGuess(Fstring Guess);
 
 	int32 GetHiddenWordLength() const;
 
