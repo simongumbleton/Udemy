@@ -10,10 +10,13 @@ For game logic see the FBullCowGame class
 #include <iostream>
 #include <string>
 #include "FBullCowGame.h"
+#pragma once
 
+//to make syntax Unreal friendly
 using Ftext = std::string;
 using int32 = int;
 
+// prototype functions because we are outside a class
 void PrintIntro();
 void PlayGame();
 Ftext GetValidGuess();
@@ -38,11 +41,11 @@ int main()
 	return 0;
 }
 
+//Plays a single game to completion
 void PlayGame()
 {
 	BCGame.Reset();
 	int32 MaxTries = BCGame.GetMaxTries();
-	//std::cout << MaxTries << std::endl;
 
 	//Loop for the number of turns asking for guesses
 	//while game is NOT won

@@ -2,6 +2,7 @@
 #include "FBullCowGame.h"
 #include <map>
 #define TMap std::map
+#pragma once
 
 using Fstring = std::string;
 using int32 = int;
@@ -24,7 +25,7 @@ int32 FBullCowGame::GetMaxTries() const
 void FBullCowGame::Reset()
 {
 	bGameIsWon = false;
-	const Fstring HIDDEN_WORD = "planet";
+	const Fstring HIDDEN_WORD = "plan";
 
 	MyHiddenWord = HIDDEN_WORD;
 
