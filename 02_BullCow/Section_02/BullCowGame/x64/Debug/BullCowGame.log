@@ -1,0 +1,6 @@
+﻿  FBullCowGame.cpp
+e:\projects\personal\unreal\udemy\02_bullcow\section_02\bullcowgame\fbullcowgame.cpp(20): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+e:\projects\personal\unreal\udemy\02_bullcow\section_02\bullcowgame\fbullcowgame.cpp(64): warning C4267: 'initializing': conversion from 'size_t' to 'int32', possible loss of data
+e:\projects\personal\unreal\udemy\02_bullcow\section_02\bullcowgame\fbullcowgame.cpp(65): warning C4267: 'initializing': conversion from 'size_t' to 'int32', possible loss of data
+e:\projects\personal\unreal\udemy\02_bullcow\section_02\bullcowgame\fbullcowgame.cpp(99): warning C4267: 'return': conversion from 'size_t' to 'int32', possible loss of data
+  BullCowGame.vcxproj -> E:\Projects\Personal\Unreal\Udemy\02_BullCow\Section_02\x64\Debug\BullCowGame.exe

@@ -1,26 +1,31 @@
 #include "stdafx.h"
 #include "FBullCowGame.h"
+#include <map>
+#define TMap std::map
 
 using Fstring = std::string;
 using int32 = int;
 
-FBullCowGame::FBullCowGame()
+FBullCowGame::FBullCowGame()	//default constructor
 {
 	Reset();
 }
 
-int32 FBullCowGame::GetMaxTries() const {return MyMaxTries; }
 int32 FBullCowGame::GetCurrentTry() const { return MyCurrentTry; }
 bool FBullCowGame::IsGameWon() const { return bGameIsWon; }
+
+int32 FBullCowGame::GetMaxTries() const
+{ 
+	TMap<int32, int32> WordLengthToMaxTries{ {3,3},{ 4,7 },{ 5,10 },{ 6,16 },{ 7,20 } };
+	return WordLengthToMaxTries[MyHiddenWord.length()]; 
+}
 
 
 void FBullCowGame::Reset()
 {
 	bGameIsWon = false;
-	constexpr int32 MAX_TRIES = 8;
-	const Fstring HIDDEN_WORD = "plant";
+	const Fstring HIDDEN_WORD = "planet";
 
-	MyMaxTries = MAX_TRIES;
 	MyHiddenWord = HIDDEN_WORD;
 
 	MyCurrentTry = 1;
@@ -29,11 +34,11 @@ void FBullCowGame::Reset()
 
 EGuessStatus FBullCowGame::CheckGuessValidity(Fstring Guess)
 {
-	if (false)	//if guess not isogram
+	if (!IsIsogram(Guess))	//if guess not isogram
 	{
 		return EGuessStatus::Not_Isogram;
 	}
-	else if (false)	//if not lowercase
+	else if (!IsLowerCase(Guess))	//if not lowercase
 	{
 		return EGuessStatus::Not_Lowercase;
 	}
@@ -92,4 +97,44 @@ FBullCowCount FBullCowGame::SubmitValidGuess(Fstring Guess)
 int32 FBullCowGame::GetHiddenWordLength() const
 {
 	return MyHiddenWord.length();
+}
+
+bool FBullCowGame::IsIsogram(Fstring Word) const
+{
+	//0 and 1 letter word are isograms
+	if (Word.length() <= 1) { return true; }
+
+	// create empty map
+	TMap<char, bool> LetterSeen;
+
+	//for each letter of guess
+	for (auto Letter : Word)
+	{	
+		Letter = tolower(Letter);
+		//if letter is in map
+		if (LetterSeen[Letter])
+		{		
+			//break out word is not isogram!
+			return false;
+		}
+		else
+		{
+			//add letter to map
+			LetterSeen[Letter] = true;
+		}
+	}
+
+	return true;
+}
+
+bool FBullCowGame::IsLowerCase(Fstring Word) const
+{
+	for (auto Letter : Word)
+	{
+		if (!islower(Letter))
+		{
+			return false;
+		}
+	}
+	return (true);
 }

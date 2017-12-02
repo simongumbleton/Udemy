@@ -19,6 +19,7 @@ void PlayGame();
 Ftext GetValidGuess();
 void DisplayGuessToUser(Ftext);
 bool AskToPlayAgain();
+void PrintGameSummary();
 
 FBullCowGame BCGame;	//instance of a new game(class)
 
@@ -30,7 +31,7 @@ int main()
 	{
 		PrintIntro();
 		PlayGame();
-		//TODO add game summary
+		PrintGameSummary();
 		bPlayAgain = AskToPlayAgain();
 	}
 	while(bPlayAgain);
@@ -59,6 +60,7 @@ void PlayGame()
 		std::cout << std::endl;
 
 	}
+	return;
 }
 
 void PrintIntro()
@@ -79,7 +81,7 @@ Ftext GetValidGuess()	//Loop until user gives valid guess
 	EGuessStatus Status = EGuessStatus::Invalid_Status;
 	do {
 		int32 CurrentTry = BCGame.GetCurrentTry();
-		std::cout << "Try " << CurrentTry << ". Make a guess...";
+		std::cout << "Try " << CurrentTry << " of " << BCGame.GetMaxTries() <<". Make a guess...";
 		Guess = "";
 		getline(std::cin, Guess);
 
@@ -112,11 +114,12 @@ void DisplayGuessToUser(Ftext guess)
 {
 	//Repeat the gues back to the user
 	std::cout << "You guessed.." << guess << std::endl;
+	return;
 }
 
 bool AskToPlayAgain()
 {
-	std::cout << "Do you want to play again? y / n ";
+	std::cout << "Do you want to play again with the same hidden word? y / n ";
 	Ftext Response = "";
 	getline(std::cin, Response);
 	if ((Response[0] == 'y') || (Response[0] == 'Y'))
@@ -133,8 +136,22 @@ bool AskToPlayAgain()
 	{
 		std::cout << "Did not understand input\n";
 		AskToPlayAgain();
-		return false;
 	}
 	
+}
+
+void PrintGameSummary()
+{
+	if (BCGame.IsGameWon())
+	{
+		std::cout << "You win!\n" ;
+	}
+	else
+	{
+		std::cout << "Sorry, you didn't win. Better luck next time.\n";
+	}
+	std::cout << std::endl;
+	
+	return;
 }
 

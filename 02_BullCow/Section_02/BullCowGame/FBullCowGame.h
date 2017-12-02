@@ -19,6 +19,7 @@ enum class EGuessStatus
 	Not_Lowercase
 };
 
+
 class FBullCowGame
 {
 public:	//Interface for the game
@@ -44,6 +45,8 @@ private:	//variables internal to the class
 	int32 MyMaxTries;
 	Fstring MyHiddenWord;
 	bool bGameIsWon;
+	bool IsIsogram(Fstring) const;
+	bool IsLowerCase(Fstring) const;
 
 };
 
