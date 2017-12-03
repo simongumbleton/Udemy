@@ -1,5 +1,15 @@
-﻿################################################################################
+################################################################################
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
 *.opendb
+*/Build
+*/Binaries
+*/DerivedDataCache
+*/Intermediate
+*/Saved
+03_Escapegame/EscapeGame/Content/StarterContent/
+03_Escapegame/EscapeGame/Intermediate/
+03_Escapegame/EscapeGame/Saved/
+*.VC.db
+
