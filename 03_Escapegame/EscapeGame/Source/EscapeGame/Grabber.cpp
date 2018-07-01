@@ -24,7 +24,30 @@ void UGrabber::BeginPlay()
 	Super::BeginPlay();
 
 	UE_LOG(LogTemp, Warning, TEXT("--- Grabber reporting for duty ----"));
-	
+
+	entityName = GetOwner()->GetName();
+
+	/// Look for attached physics handle
+	PhysicsHandle = GetOwner()->FindComponentByClass<UPhysicsHandleComponent>();
+	if (PhysicsHandle)
+	{
+		//physics handle is found
+	}
+	else
+	{
+		UE_LOG(LogTemp, Error, TEXT("! Error. Expected Physics Handle Component on entity %s"),*entityName)
+	}
+	/// Look for attached input component
+	InputComponent = GetOwner()->FindComponentByClass<UInputComponent>();
+	if (InputComponent)
+	{
+		// Input component is found
+		UE_LOG(LogTemp, Warning, TEXT("! Input component found"))
+	}
+	else
+	{
+		UE_LOG(LogTemp, Error, TEXT("! Error. Expected Input Component on entity %s"), *entityName)
+	}
 }
 
 
